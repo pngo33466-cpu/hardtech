@@ -8,7 +8,13 @@ class PcCaseDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('PC Case Details'),
+        title: const Text(
+          'PC Case Details',
+          style: TextStyle(
+            color: Color(0xFF1DB6FF),
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),

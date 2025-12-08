@@ -8,7 +8,13 @@ class PCAssemblyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Assemble / Disassemble'),
+        title: const Text(
+          'Assemble / Disassemble',
+          style: TextStyle(
+            color: Color(0xFF1DB6FF),
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: ListView.builder(
         itemCount: pcComponents.length,

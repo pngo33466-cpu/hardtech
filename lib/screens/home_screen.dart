@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hardtech/screens/about_screen.dart';
 import 'package:hardtech/screens/common_hardware_issues_screen.dart';
 import 'package:hardtech/screens/pc_assembly_screen.dart';
+import 'package:hardtech/screens/settings_screen.dart';
 import 'package:hardtech/screens/tools_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -10,8 +12,25 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Hard Tech Dashboard'),
+        title: const Text(
+          'Hard Tech Dashboard',
+          style: TextStyle(
+            color: Color(0xFF1DB6FF),
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         elevation: 0,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings, color: Color(0xFF1DB6FF)),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SettingsScreen()),
+              );
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -26,14 +45,45 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 4.0,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            TextButton(
+              onPressed: () {},
+              child: const Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Icon(Icons.home),
+                  Text('HOME'),
+                ],
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const AboutScreen()),
+                );
+              },
+              child: const Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Icon(Icons.info),
+                  Text('ABOUT'),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
   Widget _buildPCAssemblyGuideCard(BuildContext context) {
     return Card(
-      elevation: 4.0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-      color: Colors.grey[850],
       child: InkWell(
         onTap: () {
           Navigator.push(
@@ -53,10 +103,11 @@ class HomeScreen extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.bold,
+                    color: Color(0xFF1DB6FF),
                   ),
                 ),
               ),
-              const Icon(Icons.arrow_forward_ios, color: Colors.white54),
+              Icon(Icons.arrow_forward_ios),
             ],
           ),
         ),
@@ -66,9 +117,6 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildCommonIssuesCard(BuildContext context) {
     return Card(
-      elevation: 4.0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-      color: Colors.grey[850],
       child: InkWell(
         onTap: () {
           Navigator.push(
@@ -88,10 +136,11 @@ class HomeScreen extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.bold,
+                    color: Color(0xFF1DB6FF),
                   ),
                 ),
               ),
-              const Icon(Icons.arrow_forward_ios, color: Colors.white54),
+              Icon(Icons.arrow_forward_ios),
             ],
           ),
         ),
@@ -101,9 +150,6 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildHardwareToolsCard(BuildContext context) {
     return Card(
-      elevation: 4.0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-      color: Colors.grey[850],
       child: InkWell(
         onTap: () {
           Navigator.push(
@@ -123,10 +169,11 @@ class HomeScreen extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.bold,
+                    color: Color(0xFF1DB6FF),
                   ),
                 ),
               ),
-              const Icon(Icons.arrow_forward_ios, color: Colors.white54),
+              Icon(Icons.arrow_forward_ios),
             ],
           ),
         ),

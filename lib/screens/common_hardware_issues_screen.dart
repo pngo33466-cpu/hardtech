@@ -63,7 +63,7 @@ class _CommonHardwareIssuesScreenState extends State<CommonHardwareIssuesScreen>
           borderRadius: BorderRadius.circular(16.0),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.3),
+              color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.3),
               blurRadius: 8,
               offset: const Offset(0, 4),
             ),
@@ -94,12 +94,12 @@ class _CommonHardwareIssuesScreenState extends State<CommonHardwareIssuesScreen>
     );
   }
 
-  Widget _buildResultsList() {
+    Widget _buildResultsList() {
+    final theme = Theme.of(context);
     if (_searchResults.isEmpty) {
       return const Center(
         child: Text(
           'No results found.',
-          style: TextStyle(color: Colors.white54, fontSize: 16),
         ),
       );
     }
@@ -110,31 +110,30 @@ class _CommonHardwareIssuesScreenState extends State<CommonHardwareIssuesScreen>
         final issue = _searchResults[index];
         return Card(
           margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-          color: Colors.grey[800],
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
           elevation: 3,
           child: ExpansionTile(
             iconColor: const Color(0xFF1DB6FF),
-            collapsedIconColor: Colors.white70,
+            collapsedIconColor: theme.iconTheme.color,
             title: Text(
               issue.title,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
             ),
             subtitle: Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Text(
                 issue.description,
-                style: const TextStyle(color: Colors.white70),
+                style: theme.textTheme.bodyMedium,
               ),
             ),
             children: issue.steps.map((step) {
               return Container(
-                color: Colors.grey[850], // Slightly different color for steps
+                color: theme.colorScheme.surfaceContainerHighest,
                 child: ListTile(
                   contentPadding:
                       const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
                   title: Text(step.title, style: const TextStyle(fontWeight: FontWeight.w600, color: Color(0xFF1DB6FF))),
-                  subtitle: Text(step.description, style: TextStyle(color: Colors.white.withOpacity(0.8))),
+                  subtitle: Text(step.description, style: TextStyle(color: theme.colorScheme.onSurface.withOpacity(0.8))),
                 ),
               );
             }).toList(),
