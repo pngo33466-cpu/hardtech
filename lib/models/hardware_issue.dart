@@ -1,15 +1,13 @@
-import 'package:flutter/material.dart';
+import 'package:hardtech/models/troubleshooting_step.dart';
 
 class HardwareIssue {
   final String title;
-  final IconData icon;
-  final List<String> steps;
-  final List<String> causes;
+  final String description;
+  final List<TroubleshootingStep> steps;
 
   HardwareIssue({
     required this.title,
-    required this.icon,
+    required this.description,
     required this.steps,
-    required this.causes,
   });
 }

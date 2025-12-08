@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hardtech/data/hardware_issues.dart';
-import 'package:hardtech/models/hardware_issue.dart';
-import 'package:hardtech/screens/troubleshooting_guide_screen.dart';
+import 'package:hardtech/screens/common_hardware_issues_screen.dart';
+import 'package:hardtech/screens/pc_assembly_screen.dart';
+import 'package:hardtech/screens/tools_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -10,68 +10,125 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Hard Tech'),
-        leading: const Icon(Icons.computer), // App Logo
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.person_outline),
-            onPressed: () {
-              // Navigate to profile
-            },
-          ),
-        ],
+        title: const Text('Hard Tech Dashboard'),
+        elevation: 0,
       ),
-      body: GridView.builder(
+      body: Padding(
         padding: const EdgeInsets.all(16.0),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 16.0,
-          mainAxisSpacing: 16.0,
-          childAspectRatio: 1.2,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildPCAssemblyGuideCard(context),
+            const SizedBox(height: 16.0),
+            _buildCommonIssuesCard(context),
+            const SizedBox(height: 16.0),
+            _buildHardwareToolsCard(context),
+          ],
         ),
-        itemCount: hardwareIssues.length,
-        itemBuilder: (context, index) {
-          final issue = hardwareIssues[index];
-          return _buildIssueCard(context, issue);
-        },
       ),
     );
   }
 
-  Widget _buildIssueCard(BuildContext context, HardwareIssue issue) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => TroubleshootingGuideScreen(issue: issue),
-          ),
-        );
-      },
-      child: Card(
-        elevation: 4.0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16.0),
-        ),
-        color: Colors.grey[850],
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              issue.icon,
-              size: 48.0,
-              color: const Color(0xFF1DB6FF),
-            ),
-            const SizedBox(height: 12.0),
-            Text(
-              issue.title,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
+  Widget _buildPCAssemblyGuideCard(BuildContext context) {
+    return Card(
+      elevation: 4.0,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+      color: Colors.grey[850],
+      child: InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const PCAssemblyScreen()),
+          );
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Row(
+            children: [
+              const Icon(Icons.build, size: 40.0, color: Color(0xFF1DB6FF)),
+              const SizedBox(width: 20.0),
+              const Expanded(
+                child: Text(
+                  'PC Assembly Guide',
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
-            ),
-          ],
+              const Icon(Icons.arrow_forward_ios, color: Colors.white54),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCommonIssuesCard(BuildContext context) {
+    return Card(
+      elevation: 4.0,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+      color: Colors.grey[850],
+      child: InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const CommonHardwareIssuesScreen()),
+          );
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Row(
+            children: [
+              const Icon(Icons.report_problem, size: 40.0, color: Color(0xFF1DB6FF)),
+              const SizedBox(width: 20.0),
+              const Expanded(
+                child: Text(
+                  'Common Hardware Issues',
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const Icon(Icons.arrow_forward_ios, color: Colors.white54),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildHardwareToolsCard(BuildContext context) {
+    return Card(
+      elevation: 4.0,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+      color: Colors.grey[850],
+      child: InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const ToolsScreen()),
+          );
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Row(
+            children: [
+              const Icon(Icons.handyman, size: 40.0, color: Color(0xFF1DB6FF)),
+              const SizedBox(width: 20.0),
+              const Expanded(
+                child: Text(
+                  'Hardware Tools',
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const Icon(Icons.arrow_forward_ios, color: Colors.white54),
+            ],
+          ),
         ),
       ),
     );

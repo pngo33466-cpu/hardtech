@@ -1,6 +1,7 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:hardtech/screens/main_screen.dart';
+import 'dart:async';
+
+import 'package:hardtech/screens/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,31 +17,31 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(
       const Duration(seconds: 3),
       () => Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (BuildContext context) => const MainScreen()),
+        MaterialPageRoute(builder: (BuildContext context) => const HomeScreen()),
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF121212),
+    return const Scaffold(
+      backgroundColor: Color(0xFF1A1A1A), // Dark background
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.settings,
-              size: 100.0,
-              color: Theme.of(context).colorScheme.secondary,
-            ),
-            const SizedBox(height: 20),
-            const Text(
+            Text(
               'Hard Tech',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 48,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF00BFFF), // Brighter blue for better contrast
+              ),
             ),
-            const SizedBox(height: 20),
-            const CircularProgressIndicator(),
+            SizedBox(height: 20),
+            CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF00BFFF)),
+            ),
           ],
         ),
       ),

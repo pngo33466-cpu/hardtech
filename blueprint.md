@@ -1,64 +1,36 @@
-# Hard Tech App Blueprint
+# HardTech Application Blueprint
 
 ## Overview
 
-A mobile application that helps users troubleshoot common hardware issues.
+This document outlines the structure, features, and design of the HardTech mobile application. HardTech is a Flutter-based mobile app designed to assist users with PC hardware troubleshooting, assembly, and general information. The app provides a user-friendly interface to access a wealth of information related to PC hardware.
 
 ## Style and Design
 
-*   **Theme**: Modern dark theme with blue accents (`#1DB6FF`).
-*   **Layout**: Clean spacing with rounded cards and timeline-based step-by-step guides.
-*   **Troubleshooting View**: A vertical timeline design is used to make the step-by-step procedures more intuitive and visually appealing.
+- **Theme:** The application uses a dark theme with blue accents, providing a modern and tech-oriented look and feel.
+- **Typography:** The app uses the default Flutter fonts, with a focus on clear and readable text. A consistent typography is maintained across all screens.
+- **Iconography:** The app uses Material Design icons to provide a consistent and intuitive user experience.
 
 ## Features
 
-### Navigation
+### 1. Splash Screen
 
-*   **Bottom Navigation Bar**: Provides access to Home, Search, Tools, and Profile screens.
+- A simple and elegant splash screen is displayed when the app is launched. It features the app's name and a loading indicator.
 
-### Splash Screen
+### 2. Home Screen
 
-*   Displays the app logo and a progress indicator for 3 seconds.
+- The home screen serves as the main dashboard of the application, providing access to the following sections:
+    - **PC Assembly Guide:** Navigates to a screen with a step-by-step guide for assembling a PC.
+    - **Common Hardware Issues:** Navigates to a screen that lists common hardware issues and their solutions.
+    - **Hardware Tools:** Navigates to a screen that provides information about various hardware tools.
 
-### Home Screen
+### 3. PC Assembly Guide
 
-*   Displays a grid of the 10 most common hardware issues.
-*   Each issue is a selectable card with an icon.
-*   Tapping a card navigates to a troubleshooting screen.
+- This section provides a step-by-step guide for assembling a PC. Each step is presented in a clear and concise manner, with accompanying images or diagrams.
 
-### Search Screen
+### 4. Common Hardware Issues
 
-*   **Search Bar**: Allows users to search for issues, devices, or error codes.
-*   **Popular Searches**: Displays a list of common search terms as chips for quick access.
-*   **Search Results**: Shows a list of relevant troubleshooting guides based on the user's search query. Tapping a result navigates to the `TroubleshootingGuideScreen`.
+- This section provides a searchable list of common hardware issues. Each issue includes a description and a step-by-step guide to resolving it.
 
-### Tools Screen
+### 5. Hardware Tools
 
-*   A placeholder screen for future diagnostic tools. Currently displays a "Coming Soon" message.
-
-### Profile Screen
-
-*   A placeholder screen for user profiles. Currently displays a "Coming Soon" message.
-
-### Troubleshooting Screen
-
-*   Presents troubleshooting steps in a vertical timeline using the `timeline_tile` package.
-*   Each step is displayed in a card with a distinct title, description, and a list of possible causes, each highlighted with an icon and chip.
-
-### Troubleshooting Guide Screen
-
-*   Dynamically displays a detailed step-by-step guide for a selected hardware issue.
-*   Includes a list of possible causes and an image attachment box for users to add screenshots or pictures.
-
-## Data Model
-
-*   **HardwareIssue**: A model that represents a hardware issue, including its title, icon, troubleshooting steps, and possible causes.
-*   **hardware_issues.dart**: A data file that contains a list of the 10 most common hardware issues and their corresponding troubleshooting guides.
-
-## Testing
-
-*   A widget test verifies that the splash screen appears and correctly navigates to the main screen.
-
-## Current Plan
-
-*   Refine the search and troubleshooting functionality by replacing placeholder content with the 10 common hardware issues and making the troubleshooting guides dynamic.
+- This section provides a categorized list of hardware tools. Each tool is displayed with its name, a description, and an image.

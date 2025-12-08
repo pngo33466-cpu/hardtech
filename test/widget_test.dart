@@ -1,18 +1,11 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hardtech/main.dart';
-import 'package:hardtech/screens/main_screen.dart';
+import 'package:hardtech/screens/home_screen.dart';
 import 'package:hardtech/screens/splash_screen.dart';
 
 void main() {
-  testWidgets('Splash screen shows and navigates to MainScreen', (WidgetTester tester) async {
+  testWidgets('Splash screen shows and navigates to HomeScreen', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const MyApp());
 
@@ -23,17 +16,18 @@ void main() {
 
     // Wait for the splash screen timer to finish (3 seconds).
     await tester.pump(const Duration(seconds: 3));
-    // Pump one more frame to finish the navigation.
-    await tester.pump();
+    // Pump and settle to finish the navigation animation.
+    await tester.pumpAndSettle();
 
-    // Verify that we have navigated to the MainScreen.
-    expect(find.byType(MainScreen), findsOneWidget);
+    // Verify that we have navigated to the MainScreen, which contains the HomeScreen.
     expect(find.byType(SplashScreen), findsNothing);
+    expect(find.byType(HomeScreen), findsOneWidget);
 
-    // Verify the BottomNavigationBar is present with Home and Search tabs.
-    expect(find.byIcon(Icons.home), findsOneWidget);
-    expect(find.text('Home'), findsOneWidget);
-    expect(find.byIcon(Icons.search), findsOneWidget);
-    expect(find.text('Search'), findsOneWidget);
+
+    // Verify that the new home screen widgets are present.
+    expect(find.text('Hard Tech Dashboard'), findsOneWidget);
+    expect(find.widgetWithText(TextField, 'Search for hardware issues...'), findsOneWidget);
+    expect(find.text('PC Assembly Guide'), findsOneWidget);
+    expect(find.text('Common Hardware Issues'), findsOneWidget);
   });
 }
