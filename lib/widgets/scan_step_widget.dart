@@ -74,7 +74,7 @@ class ScanStepWidget extends StatelessWidget {
                   step.description,
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.white.withOpacity(0.8),
+                    color: Colors.white.withAlpha(204),
                   ),
                 ),
                 const SizedBox(height: 20.0),

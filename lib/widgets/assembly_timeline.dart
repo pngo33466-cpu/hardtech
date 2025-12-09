@@ -55,11 +55,11 @@ class AssemblyTimeline extends StatelessWidget {
                       drawGap: true,
                     ),
                     beforeLineStyle: LineStyle(
-                      color: Theme.of(context).primaryColor.withOpacity(0.5),
+                      color: Theme.of(context).primaryColor.withAlpha(128),
                       thickness: 2,
                     ),
                     endChild: Container(
-                      constraints: BoxConstraints(
+                      constraints: const BoxConstraints(
                         minHeight: 60,
                       ),
                       padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),

@@ -24,13 +24,31 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Color(0xFF1A1A1A), // Dark background
+    return Scaffold(
+      backgroundColor: const Color(0xFF1A1A1A), // Dark background
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            Container(
+              width: 120,
+              height: 120,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: const Color(0xFF00BFFF).withAlpha(51),
+                border: Border.all(
+                  color: const Color(0xFF00BFFF),
+                  width: 3,
+                ),
+              ),
+              child: const Icon(
+                Icons.memory,
+                size: 60,
+                color: Color(0xFF00BFFF),
+              ),
+            ),
+            const SizedBox(height: 30),
+            const Text(
               'Hard Tech',
               style: TextStyle(
                 fontSize: 48,
@@ -38,8 +56,8 @@ class _SplashScreenState extends State<SplashScreen> {
                 color: Color(0xFF00BFFF), // Brighter blue for better contrast
               ),
             ),
-            SizedBox(height: 20),
-            CircularProgressIndicator(
+            const SizedBox(height: 20),
+            const CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF00BFFF)),
             ),
           ],

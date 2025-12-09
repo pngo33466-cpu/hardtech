@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 class Tool {
   final String name;
   final String description;
+  final String? imageUrl;
 
   const Tool({
     required this.name,
     required this.description,
+    this.imageUrl,
   });
 }
 
@@ -17,32 +19,39 @@ const Map<String, List<Tool>> toolsByCategory = {
     Tool(
       name: 'Phillips Screwdriver',
       description: 'Used for tightening and loosening cross-head screws found on cases, motherboards, and drives.',
+      imageUrl: 'assets/images/screwdriver1.png',
     ),
     Tool(
       name: 'Flat Screwdriver',
       description: 'Used for slotted screws, and sometimes for gently prying open case parts or components.',
+      imageUrl: 'assets/images/flatscrew2.png',
     ),
     Tool(
       name: 'Tweezers',
       description: 'Essential for picking up dropped screws and handling small, delicate components like motherboard jumpers.',
+      imageUrl: 'assets/images/tweez3.jpg',
     ),
     Tool(
       name: 'Pliers',
       description: 'Needle-nose pliers are useful for gripping, bending wires, and retrieving items from tight spaces.',
+      imageUrl: 'assets/images/fliers4.png',
     ),
   ],
   'Diagnostic Tools': [
     Tool(
       name: 'Multimeter',
       description: 'Measures voltage, current, and resistance. Crucial for diagnosing power issues with components.',
+      imageUrl: 'assets/images/multi5.png',
     ),
     Tool(
       name: 'POST Card',
       description: 'Plugs into a motherboard slot to display Power-On Self-Test codes, helping diagnose boot failures.',
+      imageUrl: 'assets/images/post-card7.png',
     ),
     Tool(
       name: 'Power Supply Tester (PSU Tester)',
       description: 'A dedicated device to quickly test if a computer\'s power supply unit is providing the correct voltages.',
+      imageUrl: 'assets/images/psutester10.png',
     ),
     Tool(
       name: 'Loopback Plug',
@@ -149,18 +158,23 @@ class ToolCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Image Placeholder
+          // Image
           Container(
             height: 150,
             width: double.infinity,
             color: Colors.grey[700],
-            child: Center(
-              child: Icon(
-                Icons.image_not_supported_outlined,
-                color: Colors.grey[500],
-                size: 40,
-              ),
-            ),
+            child: tool.imageUrl != null
+                ? Image.asset(
+                    tool.imageUrl!,
+                    fit: BoxFit.contain,
+                  )
+                : Center(
+                    child: Icon(
+                      Icons.image_not_supported_outlined,
+                      color: Colors.grey[500],
+                      size: 40,
+                    ),
+                  ),
           ),
           Padding(
             padding: const EdgeInsets.all(12.0),

@@ -63,7 +63,7 @@ class _CommonHardwareIssuesScreenState extends State<CommonHardwareIssuesScreen>
           borderRadius: BorderRadius.circular(16.0),
           boxShadow: [
             BoxShadow(
-              color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.3),
+              color: const Color.fromARGB(255, 0, 0, 0).withAlpha(77),
               blurRadius: 8,
               offset: const Offset(0, 4),
             ),
@@ -133,7 +133,7 @@ class _CommonHardwareIssuesScreenState extends State<CommonHardwareIssuesScreen>
                   contentPadding:
                       const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
                   title: Text(step.title, style: const TextStyle(fontWeight: FontWeight.w600, color: Color(0xFF1DB6FF))),
-                  subtitle: Text(step.description, style: TextStyle(color: theme.colorScheme.onSurface.withOpacity(0.8))),
+                  subtitle: Text(step.description, style: TextStyle(color: theme.colorScheme.onSurface.withAlpha(204))),
                 ),
               );
             }).toList(),

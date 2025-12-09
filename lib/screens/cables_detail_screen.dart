@@ -107,7 +107,7 @@ class CablesDetailScreen extends StatelessWidget {
               height: 200,
               width: double.infinity,
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.5),
+                color: Colors.black.withAlpha(128),
                 borderRadius: BorderRadius.circular(8.0),
                 border: Border.all(color: Colors.grey),
               ),
