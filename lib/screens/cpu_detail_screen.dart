@@ -9,6 +9,7 @@ class CPUDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black,
         title: const Text(
           'CPU Details',
           style: TextStyle(

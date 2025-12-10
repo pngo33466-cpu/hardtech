@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hardtech/screens/splash_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -30,10 +29,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     const Color primarySeedColor = Colors.deepPurple;
 
-    final TextTheme appTextTheme = TextTheme(
-      displayLarge: GoogleFonts.oswald(fontSize: 57, fontWeight: FontWeight.bold),
-      titleLarge: GoogleFonts.roboto(fontSize: 22, fontWeight: FontWeight.w500),
-      bodyMedium: GoogleFonts.openSans(fontSize: 14),
+    final TextTheme appTextTheme = const TextTheme(
+      displayLarge: TextStyle(fontSize: 57, fontWeight: FontWeight.bold),
+      titleLarge: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+      bodyMedium: TextStyle(fontSize: 14),
     );
 
     final ThemeData lightTheme = ThemeData(
@@ -53,10 +52,10 @@ class MyApp extends StatelessWidget {
         ),
       ),
       textTheme: appTextTheme.apply(bodyColor: Colors.black, displayColor: Colors.black),
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         backgroundColor: primarySeedColor,
         foregroundColor: Colors.white,
-        titleTextStyle: GoogleFonts.oswald(fontSize: 24, fontWeight: FontWeight.bold),
+        titleTextStyle: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
@@ -64,7 +63,7 @@ class MyApp extends StatelessWidget {
           foregroundColor: Colors.white,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-          textStyle: GoogleFonts.roboto(fontSize: 16, fontWeight: FontWeight.w500),
+          textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
         ),
       ),
     );
@@ -82,16 +81,16 @@ class MyApp extends StatelessWidget {
         ),
       ),
       textTheme: appTextTheme.apply(bodyColor: Colors.white, displayColor: Colors.white),
-      appBarTheme: AppBarTheme(
-        backgroundColor: Colors.grey[900],
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.black,
         foregroundColor: Colors.white,
-        titleTextStyle: GoogleFonts.oswald(fontSize: 24, fontWeight: FontWeight.bold),
+        titleTextStyle: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-          textStyle: GoogleFonts.roboto(fontSize: 16, fontWeight: FontWeight.w500),
+          textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
         ),
       ),
     );

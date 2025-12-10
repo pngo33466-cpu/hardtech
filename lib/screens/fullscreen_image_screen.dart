@@ -9,21 +9,15 @@ class FullScreenImageScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: GestureDetector(
-        onTap: () {
-          Navigator.pop(context);
-        },
-        child: Center(
-          child: InteractiveViewer(
-            panEnabled: false, 
-            boundaryMargin: const EdgeInsets.all(20),
-            minScale: 0.5,
-            maxScale: 4,
-            child: Image.asset(
-              imageUrl,
-              fit: BoxFit.contain,
-            ),
-          ),
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        elevation: 0,
+        iconTheme: const IconThemeData(color: Colors.white),
+      ),
+      body: Center(
+        child: Hero(
+          tag: imageUrl,
+          child: Image.asset(imageUrl),
         ),
       ),
     );

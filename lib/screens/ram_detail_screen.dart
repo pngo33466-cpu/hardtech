@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hardtech/screens/fullscreen_image_screen.dart';
 import 'package:hardtech/widgets/assembly_timeline.dart';
 
 class RAMDetailScreen extends StatelessWidget {
@@ -8,6 +9,7 @@ class RAMDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black,
         title: const Text(
           'RAM Details',
           style: TextStyle(
@@ -41,7 +43,7 @@ class RAMDetailScreen extends StatelessWidget {
             ),
             const SizedBox(height: 24.0),
             _buildSectionTitle('Image Guides'),
-            _buildImagePlaceholders(),
+            _buildImagePlaceholders(context),
           ],
         ),
       ),
@@ -62,38 +64,58 @@ class RAMDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildImagePlaceholders() {
+  Widget _buildImagePlaceholders(BuildContext context) {
     return Column(
       children: [
-        _buildImageCard('RAM Alignment'),
+        _buildImageCard(context, title: 'RAM Alignment', imageUrl: 'assets/images/ram10.png'),
         const SizedBox(height: 16.0),
-        _buildImageCard('RAM Slot Clips'),
+        _buildImageCard(context, title: 'RAM Slot Clips', imageUrl: 'assets/images/ram_slot.png'),
       ],
     );
   }
 
-  Widget _buildImageCard(String title) {
-    return Card(
-      color: Colors.grey[850],
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Text(title, style: const TextStyle(color: Colors.white, fontSize: 18.0)),
-            const SizedBox(height: 16.0),
-            Container(
-              height: 200,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.black.withAlpha(128),
-                borderRadius: BorderRadius.circular(8.0),
-                border: Border.all(color: Colors.grey),
-              ),
-              child: const Center(
-                child: Icon(Icons.image, size: 50.0, color: Colors.grey),
-              ),
+  Widget _buildImageCard(BuildContext context, {required String title, String? imageUrl}) {
+    return GestureDetector(
+      onTap: () {
+        if (imageUrl != null) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => FullScreenImageScreen(imageUrl: imageUrl),
             ),
-          ],
+          );
+        }
+      },
+      child: Card(
+        color: Colors.grey[850],
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              Text(title, style: const TextStyle(color: Colors.white, fontSize: 18.0)),
+              const SizedBox(height: 16.0),
+              Container(
+                height: 200,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.black.withAlpha(128),
+                  borderRadius: BorderRadius.circular(8.0),
+                  border: Border.all(color: Colors.grey),
+                ),
+                child: imageUrl != null
+                    ? Hero(
+                        tag: imageUrl,
+                        child: Image.asset(
+                          imageUrl,
+                          fit: BoxFit.cover,
+                        ),
+                      )
+                    : const Center(
+                        child: Icon(Icons.image, size: 50.0, color: Colors.grey),
+                      ),
+              ),
+            ],
+          ),
         ),
       ),
     );

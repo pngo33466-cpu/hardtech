@@ -7,21 +7,28 @@ class AboutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('About'),
+        backgroundColor: Colors.black,
+        title: const Text(
+          'About Us',
+          style: TextStyle(
+            color: Color(0xFF1DB6FF),
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
+          children: [
             Text(
-              'ABOUT:',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              'Welcome to HardTech!',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10),
             Text(
-              'HardTech is an app that helps users learn about computer hardware. It includes PC assembly guides, common hardware issues, and information about essential tools. The app aims to make hardware learning simple and easy to understand.',
-              style: TextStyle(fontSize: 16),
+              'Your guide to PC hardware assembly, troubleshooting, and learning.',
+              style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
             ),
             SizedBox(height: 20),
             Text(
@@ -53,7 +60,7 @@ class AboutScreen extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Text(
-              'Learn. Build. Improve.',
+              '"Empowering you to build and fix your own tech."',
               style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
             ),
           ],

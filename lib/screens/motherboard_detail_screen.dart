@@ -9,6 +9,7 @@ class MotherboardDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black,
         title: const Text(
           'Motherboard Details',
           style: TextStyle(

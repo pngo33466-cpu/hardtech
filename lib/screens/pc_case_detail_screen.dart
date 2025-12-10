@@ -8,6 +8,7 @@ class PcCaseDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black,
         title: const Text(
           'PC Case Details',
           style: TextStyle(
@@ -25,11 +26,10 @@ class PcCaseDetailScreen extends StatelessWidget {
               title: 'Assembly Steps',
               icon: Icons.build,
               steps: [
-                'Install the motherboard standoffs.',
+                'Install motherboard standoffs.',
                 'Mount the motherboard.',
-                'Install the PSU.',
-                'Install storage drives.',
-                'Manage cables.',
+                'Install the I/O shield.',
+                'Route cables through management cutouts.',
               ],
             ),
             const SizedBox(height: 24.0),
@@ -37,8 +37,9 @@ class PcCaseDetailScreen extends StatelessWidget {
               title: 'Disassembly Steps',
               icon: Icons.undo,
               steps: [
-                'Remove all components.',
-                'Clean the case interior.',
+                'Disconnect all external peripherals.',
+                'Remove side panels.',
+                'Disconnect internal components before removing them.',
               ],
             ),
             const SizedBox(height: 24.0),
@@ -69,7 +70,7 @@ class PcCaseDetailScreen extends StatelessWidget {
       children: [
         _buildImageCard('Cable Management'),
         const SizedBox(height: 16.0),
-        _buildImageCard('Component Layout'),
+        _buildImageCard('Open Case'),
       ],
     );
   }

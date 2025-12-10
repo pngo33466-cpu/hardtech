@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hardtech/data/pc_components.dart';
 
 class PCAssemblyScreen extends StatelessWidget {
@@ -9,10 +8,10 @@ class PCAssemblyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Assemble / Disassemble',
-          style: GoogleFonts.exo2(
-            color: const Color(0xFF1DB6FF),
+          style: TextStyle(
+            color: Color(0xFF1DB6FF),
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -45,7 +44,7 @@ class PCAssemblyScreen extends StatelessWidget {
                 ),
                 title: Text(
                   component.name,
-                  style: GoogleFonts.roboto(
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
