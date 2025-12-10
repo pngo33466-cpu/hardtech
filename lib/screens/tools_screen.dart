@@ -56,24 +56,29 @@ const Map<String, List<Tool>> toolsByCategory = {
     Tool(
       name: 'Loopback Plug',
       description: 'Tests network (Ethernet) and older serial/parallel ports to ensure they are functioning correctly.',
+      imageUrl: 'assets/images/loopbackplug11.png',
     ),
   ],
   'Computer Assembly Tools': [
     Tool(
       name: 'Thermal Paste',
       description: 'A conductive material applied between a CPU/GPU and its heatsink to ensure efficient heat transfer.',
+      imageUrl: 'assets/images/thermalpaste12.png',
     ),
     Tool(
       name: 'Cable Ties & Velcro Straps',
       description: 'Used for managing and organizing internal cables, improving airflow and the PC\'s overall look.',
+      imageUrl: 'assets/images/cable-management13.png',
     ),
     Tool(
       name: 'Compressed Air Duster',
       description: 'Used for safely cleaning dust and debris from heatsinks, fans, and other sensitive components.',
+      imageUrl: 'assets/images/compressedair14.png',
     ),
     Tool(
       name: 'Anti-Static Wrist Strap',
       description: 'Protects sensitive electronic components from damage caused by electrostatic discharge (ESD).',
+      imageUrl: 'assets/images/antitools15.png',
     ),
   ],
 };
@@ -86,7 +91,20 @@ class ToolsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Hardware Tools'),
+        title: ShaderMask(
+          shaderCallback: (bounds) => LinearGradient(
+            colors: [Colors.blueAccent, Colors.tealAccent],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ).createShader(bounds),
+          child: const Text(
+            'Hardware Tools',
+            style: TextStyle(
+              // The color must be set to white for the shader to work.
+              color: Colors.white,
+            ),
+          ),
+        ),
         backgroundColor: Colors.grey[900],
         elevation: 0,
       ),
@@ -106,6 +124,7 @@ class ToolsScreen extends StatelessWidget {
   }
 }
 
+
 // --- Category Section Widget ---
 class ToolCategorySection extends StatelessWidget {
   final String categoryTitle;
@@ -124,12 +143,19 @@ class ToolCategorySection extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(bottom: 12.0, top: 16.0),
-          child: Text(
-            categoryTitle,
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
+          child: ShaderMask(
+            shaderCallback: (bounds) => LinearGradient(
+              colors: [Colors.blueAccent, Colors.tealAccent],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ).createShader(bounds),
+            child: Text(
+              categoryTitle,
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+            ),
           ),
         ),
         ...tools.map((tool) => ToolCard(tool: tool)),
@@ -154,34 +180,44 @@ class ToolCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12.0),
       ),
       elevation: 4,
-      clipBehavior: Clip.antiAlias, // Ensures the container respects the card's border radius
+      clipBehavior: Clip.antiAlias,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Image
-          Container(
-            height: 150,
-            width: double.infinity,
-            color: Colors.grey[700],
-            child: tool.imageUrl != null
-                ? Image.asset(
-                    tool.imageUrl!,
-                    fit: BoxFit.contain,
-                  )
-                : Center(
-                    child: Icon(
-                      Icons.image_not_supported_outlined,
-                      color: Colors.grey[500],
-                      size: 40,
-                    ),
+          GestureDetector(
+            onTap: () {
+              if (tool.imageUrl != null) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => FullScreenImageScreen(imageUrl: tool.imageUrl!),
                   ),
+                );
+              }
+            },
+            child: Container(
+              height: 150,
+              width: double.infinity,
+              color: Colors.grey[700],
+              child: tool.imageUrl != null
+                  ? Image.asset(
+                      tool.imageUrl!,
+                      fit: BoxFit.cover,
+                    )
+                  : Center(
+                      child: Icon(
+                        Icons.image_not_supported_outlined,
+                        color: Colors.grey[500],
+                        size: 40,
+                      ),
+                    ),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Tool Name
                 Text(
                   tool.name,
                   style: const TextStyle(
@@ -191,7 +227,6 @@ class ToolCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 8.0),
-                // Tool Description
                 Text(
                   tool.description,
                   style: TextStyle(
@@ -203,6 +238,37 @@ class ToolCard extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+// --- Full Screen Image Widget ---
+class FullScreenImageScreen extends StatelessWidget {
+  final String imageUrl;
+
+  const FullScreenImageScreen({super.key, required this.imageUrl});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.close, color: Colors.white),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+      ),
+      body: Center(
+        child: InteractiveViewer(
+          panEnabled: false,
+          boundaryMargin: EdgeInsets.all(20),
+          minScale: 0.5,
+          maxScale: 4,
+          child: Image.asset(imageUrl),
+        ),
       ),
     );
   }

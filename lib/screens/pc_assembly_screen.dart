@@ -1,4 +1,6 @@
+
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hardtech/data/pc_components.dart';
 
 class PCAssemblyScreen extends StatelessWidget {
@@ -8,35 +10,60 @@ class PCAssemblyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Assemble / Disassemble',
-          style: TextStyle(
-            color: Color(0xFF1DB6FF),
+          style: GoogleFonts.exo2(
+            color: const Color(0xFF1DB6FF),
             fontWeight: FontWeight.bold,
           ),
         ),
+        backgroundColor: Colors.black,
       ),
-      body: ListView.builder(
-        itemCount: pcComponents.length,
-        itemBuilder: (context, index) {
-          final component = pcComponents[index];
-          return Card(
-            margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-            child: ListTile(
-              leading: Icon(component.icon, size: 40.0, color: Theme.of(context).primaryColor),
-              title: Text(component.name, style: const TextStyle(fontWeight: FontWeight.bold)),
-              trailing: const Icon(Icons.arrow_forward_ios),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => component.destinationScreen,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.black, Colors.grey[900]!, Colors.black],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: ListView.builder(
+          itemCount: pcComponents.length,
+          itemBuilder: (context, index) {
+            final component = pcComponents[index];
+            return Card(
+              elevation: 5,
+              margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+              color: Colors.grey[850]?.withOpacity(0.9),
+              child: ListTile(
+                leading: Icon(
+                  component.icon,
+                  size: 40.0,
+                  color: const Color(0xFF1DB6FF),
+                ),
+                title: Text(
+                  component.name,
+                  style: GoogleFonts.roboto(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
                   ),
-                );
-              },
-            ),
-          );
-        },
+                ),
+                trailing: const Icon(Icons.arrow_forward_ios, color: Colors.white70),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => component.destinationScreen,
+                    ),
+                  );
+                },
+              ),
+            );
+          },
+        ),
       ),
     );
   }

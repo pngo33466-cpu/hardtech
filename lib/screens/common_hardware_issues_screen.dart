@@ -41,7 +41,20 @@ class _CommonHardwareIssuesScreenState extends State<CommonHardwareIssuesScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Common Hardware Issues'),
+        title: ShaderMask(
+          shaderCallback: (bounds) => LinearGradient(
+            colors: [Colors.blueAccent, Colors.tealAccent],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ).createShader(bounds),
+          child: const Text(
+            'Common Hardware Issues',
+            style: TextStyle(
+              // The color must be set to white for the shader to work.
+              color: Colors.white,
+            ),
+          ),
+        ),
       ),
       body: Column(
         children: [
