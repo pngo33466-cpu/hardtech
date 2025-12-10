@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hardtech/data/pc_components.dart';
@@ -37,7 +36,7 @@ class PCAssemblyScreen extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.0),
               ),
-              color: Colors.grey[850]?.withOpacity(0.9),
+              color: Colors.grey[850]?.withAlpha(230), // Replaced withOpacity with withAlpha
               child: ListTile(
                 leading: Icon(
                   component.icon,
