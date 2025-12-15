@@ -84,14 +84,14 @@ class CaseFansDetailScreen extends StatelessWidget {
   Widget _buildImagePlaceholders() {
     return Column(
       children: [
-        _buildImageCard('Proper Assembly Image (Airflow Direction)'),
+        _buildImageCard('Proper Assembly Image (Airflow Direction)', 'assets/images/airflow20.jpg'),
         const SizedBox(height: 16.0),
-        _buildImageCard('Proper Disassembly Image'),
+        _buildImageCard('Proper Disassembly Image', 'assets/images/cpu103.png'),
       ],
     );
   }
 
-  Widget _buildImageCard(String title) {
+  Widget _buildImageCard(String title, [String? imagePath]) {
     return Card(
       color: Colors.grey[850],
       child: Padding(
@@ -108,9 +108,14 @@ class CaseFansDetailScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8.0),
                 border: Border.all(color: Colors.grey),
               ),
-              child: const Center(
-                child: Icon(Icons.image, size: 50.0, color: Colors.grey),
-              ),
+              child: imagePath != null
+                  ? Image.asset(
+                      imagePath,
+                      fit: BoxFit.contain,
+                    )
+                  : const Center(
+                      child: Icon(Icons.image, size: 50.0, color: Colors.grey),
+                    ),
             ),
           ],
         ),

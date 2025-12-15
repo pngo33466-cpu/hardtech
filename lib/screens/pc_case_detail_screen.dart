@@ -68,14 +68,14 @@ class PcCaseDetailScreen extends StatelessWidget {
   Widget _buildImagePlaceholders() {
     return Column(
       children: [
-        _buildImageCard('Cable Management'),
+        _buildImageCard('Cable Management', 'assets/images/cable-management.png'),
         const SizedBox(height: 16.0),
-        _buildImageCard('Open Case'),
+        _buildImageCard('Open Case', 'assets/cptcase.jpg'),
       ],
     );
   }
 
-  Widget _buildImageCard(String title) {
+  Widget _buildImageCard(String title, String imagePath) {
     return Card(
       color: Colors.grey[850],
       child: Padding(
@@ -88,12 +88,11 @@ class PcCaseDetailScreen extends StatelessWidget {
               height: 200,
               width: double.infinity,
               decoration: BoxDecoration(
-                color: Colors.black.withAlpha(128),
                 borderRadius: BorderRadius.circular(8.0),
-                border: Border.all(color: Colors.grey),
-              ),
-              child: const Center(
-                child: Icon(Icons.image, size: 50.0, color: Colors.grey),
+                image: DecorationImage(
+                  image: AssetImage(imagePath),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ],

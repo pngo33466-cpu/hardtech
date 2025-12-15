@@ -87,14 +87,14 @@ class CablesDetailScreen extends StatelessWidget {
   Widget _buildImagePlaceholders() {
     return Column(
       children: [
-        _buildImageCard('Proper Cable Management'),
+        _buildImageCard('Proper Cable Management', 'assets/images/Color-Coded-Cable-Management.webp'),
         const SizedBox(height: 16.0),
-        _buildImageCard('Common Cable Connectors'),
+        _buildImageCard('Common Cable Connectors', 'assets/images/common-computer-monitor.webp'),
       ],
     );
   }
 
-  Widget _buildImageCard(String title) {
+  Widget _buildImageCard(String title, [String? imagePath]) {
     return Card(
       color: Colors.grey[850],
       child: Padding(
@@ -111,9 +111,14 @@ class CablesDetailScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8.0),
                 border: Border.all(color: Colors.grey),
               ),
-              child: const Center(
-                child: Icon(Icons.image, size: 50.0, color: Colors.grey),
-              ),
+              child: imagePath != null
+                  ? Image.asset(
+                      imagePath,
+                      fit: BoxFit.contain,
+                    )
+                  : const Center(
+                      child: Icon(Icons.image, size: 50.0, color: Colors.grey),
+                    ),
             ),
           ],
         ),
