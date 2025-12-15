@@ -72,12 +72,6 @@ class CPUDetailScreen extends StatelessWidget {
         _buildImageCard(context, imageUrl: 'assets/images/allignment27.jpg'),
         const SizedBox(height: 16.0),
         _buildImageCard(context, imageUrl: 'assets/images/allignment28.jpg'),
-        const SizedBox(height: 16.0),
-        _buildImageCard(context),
-        const SizedBox(height: 16.0),
-        _buildImageCard(context),
-        const SizedBox(height: 16.0),
-        _buildImageCard(context),
       ],
     );
   }

@@ -1,36 +1,35 @@
-# HardTech Application Blueprint
+
+# Project Blueprint: HardTech App
 
 ## Overview
 
-This document outlines the structure, features, and design of the HardTech mobile application. HardTech is a Flutter-based mobile app designed to assist users with PC hardware troubleshooting, assembly, and general information. The app provides a user-friendly interface to access a wealth of information related to PC hardware.
+A mobile application designed to provide users with detailed, step-by-step guides for assembling and disassembling personal computer hardware components. The app features a clean, dark-themed interface with clear instructions and visual aids.
 
-## Style and Design
+## Implemented Features & Style
 
-- **Theme:** The application uses a dark theme with blue accents, providing a modern and tech-oriented look and feel.
-- **Typography:** The app uses the default Flutter fonts, with a focus on clear and readable text. A consistent typography is maintained across all screens.
-- **Iconography:** The app uses Material Design icons to provide a consistent and intuitive user experience.
+*   **Core Navigation:** A home screen lists various hardware components. Tapping a component navigates to a dedicated detail screen.
+*   **Dark Theme:** The application uses a consistent dark theme (`Colors.black`, `Colors.grey[850]`) with a striking blue accent color (`Color(0xFF1DB6FF)`) for titles and important elements.
+*   **Component Detail Screens:**
+    *   Each detail screen provides step-by-step assembly and disassembly instructions.
+    *   Uses a custom `AssemblyTimeline` widget to present instructions clearly with icons (`Icons.build`, `Icons.undo`).
+*   **CPU Detail Screen:**
+    *   Displays assembly/disassembly steps for a CPU.
+    *   Features an "Image Guides" section with tappable images that open in a full-screen view (`FullScreenImageScreen`).
+    *   Images used: `installing-a-cpu21.png`, `allignment27.jpg`, `allignment28.jpg`.
+*   **CPU Cooler Detail Screen:**
+    *   Displays assembly/disassembly steps for a CPU Cooler.
+    *   Features an "Image Guides" section with placeholders for images related to thermal paste application, cooler mounting, and fan connection.
 
-## Features
+## Current Plan: Fix Missing Images
 
-### 1. Splash Screen
+### Goal
+Resolve the issue where images for "Cooler Mounting" and "Connecting Fan" are not displaying on the CPU Cooler Detail Screen.
 
-- A simple and elegant splash screen is displayed when the app is launched. It features the app's name and a loading indicator.
+### Problem Analysis
+The code in `lib/screens/cpu_cooler_detail_screen.dart` correctly references the image paths (`assets/images/coolermastercpu-coole.png` and `assets/images/cpu fan support.jpg`). However, diagnostic checks have confirmed that these image files are **not present** in the `assets/images/` directory of the project. The application cannot render images that do not exist in the specified asset path.
 
-### 2. Home Screen
+### Resolution Steps
+1.  **Locate Files:** The user must locate the image files `coolermastercpu-coole.png` and `cpu fan support.jpg` on their local machine.
+2.  **Add to Project:** The user needs to drag and drop these image files directly into the `assets/images/` folder within the IDE's file explorer.
+3.  **Verification:** Once the files are correctly placed in the assets folder, Flutter's hot reload mechanism will automatically detect them, and the images will render correctly in the application without any further code changes.
 
-- The home screen serves as the main dashboard of the application, providing access to the following sections:
-    - **PC Assembly Guide:** Navigates to a screen with a step-by-step guide for assembling a PC.
-    - **Common Hardware Issues:** Navigates to a screen that lists common hardware issues and their solutions.
-    - **Hardware Tools:** Navigates to a screen that provides information about various hardware tools.
-
-### 3. PC Assembly Guide
-
-- This section provides a step-by-step guide for assembling a PC. Each step is presented in a clear and concise manner, with accompanying images or diagrams.
-
-### 4. Common Hardware Issues
-
-- This section provides a searchable list of common hardware issues. Each issue includes a description and a step-by-step guide to resolving it.
-
-### 5. Hardware Tools
-
-- This section provides a categorized list of hardware tools. Each tool is displayed with its name, a description, and an image.

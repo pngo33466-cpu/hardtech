@@ -67,9 +67,9 @@ class RAMDetailScreen extends StatelessWidget {
   Widget _buildImagePlaceholders(BuildContext context) {
     return Column(
       children: [
-        _buildImageCard(context, title: 'RAM Alignment', imageUrl: 'assets/images/ram10.png'),
+        _buildImageCard(context, title: 'RAM Alignment', imageUrl: 'assets/images/ram16.png'),
         const SizedBox(height: 16.0),
-        _buildImageCard(context, title: 'RAM Slot Clips', imageUrl: 'assets/images/ram_slot.png'),
+        _buildImageCard(context, title: 'RAM Slot Clips', imageUrl: 'assets/images/ram slot.png'),
       ],
     );
   }

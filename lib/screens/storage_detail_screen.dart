@@ -69,7 +69,7 @@ class StorageDetailScreen extends StatelessWidget {
       children: [
         _buildImageCard(context, title: 'SATA Cable Connection', imageUrl: 'assets/images/satacable.png'),
         const SizedBox(height: 16.0),
-        _buildImageCard(context, title: 'Drive Bay Mounting', imageUrl: 'assets/images/drivebay.png'),
+        _buildImageCard(context, title: 'Drive Bay Mounting', imageUrl: 'assets/images/harddiskdriveholder.jpg'),
       ],
     );
   }

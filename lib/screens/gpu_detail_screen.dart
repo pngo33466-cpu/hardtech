@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hardtech/screens/fullscreen_image_screen.dart';
 import 'package:hardtech/widgets/assembly_timeline.dart';
 
 class GpuDetailScreen extends StatelessWidget {
@@ -44,7 +45,7 @@ class GpuDetailScreen extends StatelessWidget {
             ),
             const SizedBox(height: 24.0),
             _buildSectionTitle('Image Guides'),
-            _buildImagePlaceholders(),
+            _buildImagePlaceholders(context),
           ],
         ),
       ),
@@ -65,38 +66,58 @@ class GpuDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildImagePlaceholders() {
+  Widget _buildImagePlaceholders(BuildContext context) {
     return Column(
       children: [
-        _buildImageCard('PCIe Slot Alignment'),
+        _buildImageCard(context, title: 'PCIe Slot Alignment', imageUrl: 'assets/images/PCIe-slot28.png'),
         const SizedBox(height: 16.0),
-        _buildImageCard('GPU Power Connection'),
+        _buildImageCard(context, title: 'GPU Power Connection', imageUrl: 'assets/images/marketing.jpg'),
       ],
     );
   }
 
-  Widget _buildImageCard(String title) {
-    return Card(
-      color: Colors.grey[850],
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Text(title, style: const TextStyle(color: Colors.white, fontSize: 18.0)),
-            const SizedBox(height: 16.0),
-            Container(
-              height: 200,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.black.withAlpha(128),
-                borderRadius: BorderRadius.circular(8.0),
-                border: Border.all(color: Colors.grey),
-              ),
-              child: const Center(
-                child: Icon(Icons.image, size: 50.0, color: Colors.grey),
-              ),
+  Widget _buildImageCard(BuildContext context, {required String title, String? imageUrl}) {
+    return GestureDetector(
+      onTap: () {
+        if (imageUrl != null) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => FullScreenImageScreen(imageUrl: imageUrl),
             ),
-          ],
+          );
+        }
+      },
+      child: Card(
+        color: Colors.grey[850],
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              Text(title, style: const TextStyle(color: Colors.white, fontSize: 18.0)),
+              const SizedBox(height: 16.0),
+              Container(
+                height: 200,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.black.withAlpha(128),
+                  borderRadius: BorderRadius.circular(8.0),
+                  border: Border.all(color: Colors.grey),
+                ),
+                child: imageUrl != null
+                    ? Hero(
+                        tag: imageUrl,
+                        child: Image.asset(
+                          imageUrl,
+                          fit: BoxFit.cover,
+                        ),
+                      )
+                    : const Center(
+                        child: Icon(Icons.image, size: 50.0, color: Colors.grey),
+                      ),
+              ),
+            ],
+          ),
         ),
       ),
     );
