@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hardtech/screens/fullscreen_image_screen.dart';
 import 'package:hardtech/widgets/assembly_timeline.dart';
 
+// This is a comment to force a change
 class GpuDetailScreen extends StatelessWidget {
   const GpuDetailScreen({super.key});
 
